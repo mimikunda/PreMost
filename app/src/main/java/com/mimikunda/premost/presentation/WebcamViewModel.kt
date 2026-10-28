@@ -1,6 +1,7 @@
 package com.mimikunda.premost.presentation
 
 import android.app.Application
+import android.content.Intent
 import androidx.annotation.OptIn
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,6 +9,7 @@ import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
+import com.mimikunda.premost.data.DeepLinkParser
 import com.mimikunda.premost.data.StreamConfig
 import com.mimikunda.premost.data.StreamMediaSourceFactory
 import com.mimikunda.premost.data.StreamPreferencesRepository
@@ -116,6 +118,11 @@ class WebcamViewModel(application: Application) : AndroidViewModel(application) 
         exoPlayer.setMediaSource(mediaSource)
         exoPlayer.playWhenReady = true
         exoPlayer.prepare()
+    }
+
+    fun handleDeepLink(intent: Intent?) {
+        val config = DeepLinkParser.parseIntent(intent) ?: return
+        updateStream(config.url, config.referer, config.origin)
     }
 
     fun retryStream() {
