@@ -31,15 +31,12 @@ import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -64,15 +61,10 @@ fun SetupDialog(
 
     @Suppress("DEPRECATION")
     val clipboardManager = LocalClipboardManager.current
-    val focusRequester = remember { FocusRequester() }
 
     val isUrlValid = remember(url) {
         val trimmed = url.trim()
         trimmed.startsWith("http://", ignoreCase = true) || trimmed.startsWith("https://", ignoreCase = true)
-    }
-
-    LaunchedEffect(Unit) {
-        focusRequester.requestFocus()
     }
 
     ModalBottomSheet(
@@ -139,9 +131,7 @@ fun SetupDialog(
                         }
                     }
                 ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .focusRequester(focusRequester)
+                modifier = Modifier.fillMaxWidth()
             )
 
             Row(
@@ -198,6 +188,7 @@ fun SetupDialog(
                     }
                 },
                 enabled = isUrlValid,
+                shape = androidx.compose.foundation.shape.RoundedCornerShape(28.dp),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp)

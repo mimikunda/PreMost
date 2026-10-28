@@ -3,6 +3,8 @@ package com.mimikunda.premost.presentation.components
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -43,31 +45,39 @@ import com.mimikunda.premost.presentation.WebcamUiState
 
 @Composable
 fun SettingsFloatingActionButton(
+    visible: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box(
+    AnimatedVisibility(
+        visible = visible,
+        enter = fadeIn() + slideInVertically { -it },
+        exit = fadeOut() + slideOutVertically { -it },
         modifier = modifier
-            .fillMaxSize()
-            .statusBarsPadding()
-            .padding(16.dp),
-        contentAlignment = Alignment.TopEnd
     ) {
-        Surface(
-            shape = CircleShape,
-            color = Color.Black.copy(alpha = 0.5f),
-            contentColor = Color.White,
-            tonalElevation = 6.dp
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .statusBarsPadding()
+                .padding(16.dp),
+            contentAlignment = Alignment.TopEnd
         ) {
-            IconButton(
-                onClick = onClick,
-                modifier = Modifier.size(48.dp)
+            Surface(
+                shape = CircleShape,
+                color = Color.Black.copy(alpha = 0.5f),
+                contentColor = Color.White,
+                tonalElevation = 6.dp
             ) {
-                Icon(
-                    imageVector = Icons.Default.Settings,
-                    contentDescription = stringResource(R.string.settings_fab_content_desc),
-                    tint = Color.White
-                )
+                IconButton(
+                    onClick = onClick,
+                    modifier = Modifier.size(48.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Settings,
+                        contentDescription = stringResource(R.string.settings_fab_content_desc),
+                        tint = Color.White
+                    )
+                }
             }
         }
     }
