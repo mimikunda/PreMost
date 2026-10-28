@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">PreMost</string>
+
+    <!-- Setup Dialog -->
+    <string name="setup_dialog_title_new">Nastavitev HLS</string>
+    <string name="setup_dialog_title_edit">Uredi HLS</string>
+    <string name="setup_dialog_url_label">URL HLS (.m3u8)</string>
+    <string name="setup_dialog_url_placeholder">https://example.com/stream.m3u8</string>
+    <string name="setup_dialog_paste_content_desc">Prilepi iz odložišča</string>
+    <string name="setup_dialog_url_error">URL se mora začeti s http:// ali https://</string>
+    <string name="setup_dialog_url_helper">Vnesite veljaven HTTP/HTTPS HLS URL</string>
+    <string name="setup_dialog_advanced_title">Napredne nastavitve</string>
+    <string name="setup_dialog_collapse_content_desc">Strni</string>
+    <string name="setup_dialog_expand_content_desc">Razširi</string>
+    <string name="setup_dialog_referer_label">Referer</string>
+    <string name="setup_dialog_referer_placeholder">https://example.com/</string>
+    <string name="setup_dialog_origin_label">Origin</string>
+    <string name="setup_dialog_origin_placeholder">https://example.com</string>
+    <string name="setup_dialog_save_button">Shrani in predvajaj</string>
+
+    <!-- Status Overlays -->
+    <string name="settings_fab_content_desc">Uredi povezavo</string>
+    <string name="loading_overlay_text">Povezovanje…</string>
+    <string name="error_overlay_title">Napaka pri predvajanju</string>
+    <string name="error_overlay_default_message">Predvajanje ni mogoče. Preverite povezavo ali URL.</string>
+    <string name="error_overlay_edit_button">Uredi povezavo</string>
+    <string name="error_overlay_retry_button">Ponovno naloži</string>
+</resources>
